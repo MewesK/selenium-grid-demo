@@ -5,10 +5,37 @@
 // thanks to Stylus' "import css" and "paths" options
 
 @import 'prism/themes/prism-okaidia.css'
-// Check out "bower_components/prism/themes/" for available themes
 
-article {
-  background-image: url("../images/logo.png");
-  background-position: right bottom;
-  background-repeat: no-repeat;
-}
+blockquote
+  font-style: italic
+
+article
+  transition: all .3s ease
+  display: none
+  &.bespoke-parent
+    display: block
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    overflow: hidden
+    perspective: 600px
+    @media print
+      overflow: visible
+      position: static
+
+    &.green
+      background: #00F3A5
+    &.white
+      background: white
+
+.bespoke-slide
+  background: transparent
+
+.gif
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  &--baby
+    background-image: url(http://i.imgur.com/odnRdn3.gif)

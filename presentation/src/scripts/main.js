@@ -6,6 +6,7 @@ var bespoke = require('bespoke'),
   scale = require('bespoke-scale'),
   hash = require('bespoke-hash'),
   progress = require('bespoke-progress');
+  state = require('bespoke-state');
 
 // Bespoke.js
 bespoke.from('article', [
@@ -14,7 +15,8 @@ bespoke.from('article', [
   touch(),
   scale(),
   hash(),
-  progress()
+  progress(),
+  state()
 ]);
 
 // Prism syntax highlighting

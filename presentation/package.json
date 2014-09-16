@@ -11,6 +11,7 @@
     "bespoke-scale": "^1.0.0",
     "bespoke-theme-cube": "^1.0.0",
     "bespoke-touch": "^1.0.0",
+    "bespoke-state": "^1.0.0",
     "debowerify": "^0.7.1",
     "gh-pages": "^0.2.0",
     "gulp": "^3.8.1",
