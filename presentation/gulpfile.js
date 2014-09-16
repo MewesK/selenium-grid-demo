@@ -106,7 +106,7 @@ gulp.task('watch', function() {
 });*/
 
 var options = {
-    remoteUrl: "https://github.com/mwanjura/elasticsearch-presentation.git",
+    remoteUrl: "https://github.com/MewesK/selenium-grid-demo.git",
     branch: "gh-pages"
 };
 gulp.task('deploy', function () {
