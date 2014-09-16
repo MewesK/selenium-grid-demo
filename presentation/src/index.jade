@@ -132,6 +132,26 @@ html
 
       section
         h3 Logging / Monitoring
+        ul
+          li IDE output
+          li build server output
+          li continous testing with custom output (Log Shipper/Logstash)
+
+      section
+        pre.small
+          code.language-markup.
+            2014-09-15 02:04:56,990 INFO  [pool-1-thread-1] RepositoryTestWin7: Starting test:
+            2014-09-15 02:04:56,990 INFO  [pool-1-thread-2] RepositoryTestWin8: Starting test:
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: BaseUrl: https://github.com
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-2] RepositoryTestWin8: BaseUrl: https://github.com
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: Platform: VISTA
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-2] RepositoryTestWin8: Platform: WIN8
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: BrowserName: chrome
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-2] RepositoryTestWin8: BrowserName: chrome
+            2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: Version: null
+            2014-09-15 02:04:56,993 INFO  [pool-1-thread-2] RepositoryTestWin8: Version: null
+            2014-09-15 02:05:26,226 INFO  [main] Launcher: 2 tests run in 29 seconds
+            2014-09-15 02:05:26,226 INFO  [main] Launcher: 0 of 2 tests failed
 
       section
         h3 Final Thoughts
