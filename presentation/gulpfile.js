@@ -13,7 +13,7 @@ var pkg = require('./package.json'),
   csso = require('gulp-csso'),
   through = require('through'),
   opn = require('opn'),
-  ghpages = require('gh-pages'),
+  deploy = require("gulp-gh-pages"),
   path = require('path'),
   isDist = process.argv.indexOf('serve') === -1;
 
@@ -101,9 +101,19 @@ gulp.task('watch', function() {
   ], ['js']);
 });
 
-gulp.task('deploy', ['build'], function(done) {
+/*gulp.task('deploy', ['build'], function(done) {
   ghpages.publish(path.join(__dirname, 'dist'), { logger: gutil.log }, done);
+});*/
+
+var options = {
+    remoteUrl: "https://github.com/mwanjura/elasticsearch-presentation.git",
+    branch: "gh-pages"
+};
+gulp.task('deploy', function () {
+    gulp.src("dist/**/*.*")
+        .pipe(deploy(options));
 });
+
 
 gulp.task('build', ['js', 'html', 'css', 'images']);
 gulp.task('serve', ['connect', 'watch']);
