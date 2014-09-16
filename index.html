@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Selenium Grid</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body>
+    <article>
+      <section><span><img src="images/selenium-ide-logo.png"><img src="images/selenium-logo.png"><img src="images/selenium-grid-logo.png"></span>
+        <h1>Selenium Grid2</h1><b>Mewes Kochheim</b>
+      </section>
+      <section>
+        <h3>Introduction</h3>
+        <blockquote>"Selenium-Grid allows you run your tests on different machines against different browsers in parallel."</blockquote>
+      </section>
+      <section>
+        <h3>History</h3>
+        <ul>
+          <li>currently in version 2.43.1</li>
+          <li>part of the Selenium server</li>
+          <li>successor of Selenium RC</li>
+          <li>backwards compatible</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Selenium server</h3>
+        <ul>
+          <li>Selenium core</li>
+          <li>Selenium hub</li>
+          <li>Selenium node</li>
+        </ul>
+      </section>
+      <section><img src="images/system_architecture.png" style="width:600px"></section>
+      <section class="gif gif--construction">
+        <h2>Preparations</h2>
+      </section>
+      <section>
+        <h3>Selenium IDE</h3>
+        <blockquote>"Selenium IDE is an integrated development environment for Selenium scripts. It is implemented as a Firefox extension, and allows you to record, edit, and debug tests."</blockquote>
+      </section>
+      <section><img src="images/test_suite.png" style="width:400px"></section>
+      <section><img src="images/export.png" style="width:400px"></section>
+      <section>
+        <p>run as part of the build process</p>
+        <p><b>and/or</b></p>
+        <p>run continuously</p>
+      </section>
+      <section>
+        <h3>Selenium Hub</h3>
+        <pre><code class="language-markup">$ java -jar selenium-server-standalone-2.43.1.jar -role hub
+</code></pre>
+      </section>
+      <section>
+        <h2>Nodes</h2>
+      </section>
+      <section class="gif gif--annoying"><b>...are annoying</b></section>
+      <section>
+        <h3>Supported Operating Systems</h3>
+        <ul>
+          <li>Windows 7</li>
+          <li>Windows 8</li>
+          <li>Windows 8.1</li>
+          <li>OS X (latest)</li>
+          <li>Ubuntu</li>
+          <li>Android (Chrome only)</li>
+          <li>ChromeOS (Chrome only, duh)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Supported Browsers</h3>
+        <ul>
+          <li>Firefox&nbsp;<small>(latest, previous, latest ESR and previous ESR)</small></li>
+          <li>Internet Explorer&nbsp;<small>(6, 7, 8, 9 and 10)</small></li>
+          <li>Safari&nbsp;<small>(5.1+)</small></li>
+          <li>Opera&nbsp;<small>(12.x)</small></li>
+          <li>Chrome&nbsp;<small>(latest stable, beta, and dev, plus previous stable)</small></li>
+        </ul><b>All browsers except Firefox require external driver applications!</b>
+      </section>
+      <section>
+        <h3>Example</h3>
+        <pre><code class="language-markup">set PATH=%PATH%;C:\Selenium
+start cmd /k java ^
+  -jar C:\Selenium\selenium-server-standalone-2.40.0.jar ^
+  -role node ^
+  -hub http://192.168.1.1:4444/grid/register
+start cmd /k IEDriverServer.exe --port=9516
+start cmd /k chromedriver.exe
+</code></pre>
+      </section>
+      <section>
+        <h2>The First Run
+          <iframe width="560" height="315" src="http://www.youtube.com/embed/850a1O5_3H0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+        </h2>
+      </section>
+      <section>
+        <h2>Parallelism</h2>
+        <pre><code class="language-javascript">Result result = JUnitCore.runClasses(
+    ParallelComputer.classes(),
+    new Class[]{RepositoryTestWin7.class,RepositoryTestWin8.class }
+);</code></pre><b>powered by JUnit4 (experimental)</b>
+      </section>
+      <section>
+        <h2>The Second Run
+          <iframe width="560" height="315" src="http://www.youtube.com/embed/t45h81koe_Y" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+        </h2>
+      </section>
+      <section>
+        <h3>Logging / Monitoring</h3>
+        <ul>
+          <li>IDE output</li>
+          <li>build server output</li>
+          <li>continous testing with custom output (Log Shipper/Logstash)</li>
+        </ul>
+      </section>
+      <section>
+        <pre class="small"><code class="language-markup">2014-09-15 02:04:56,990 INFO  [pool-1-thread-1] RepositoryTestWin7: Starting test:
+2014-09-15 02:04:56,990 INFO  [pool-1-thread-2] RepositoryTestWin8: Starting test:
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: BaseUrl: https://github.com
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-2] RepositoryTestWin8: BaseUrl: https://github.com
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: Platform: VISTA
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-2] RepositoryTestWin8: Platform: WIN8
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: BrowserName: chrome
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-2] RepositoryTestWin8: BrowserName: chrome
+2014-09-15 02:04:56,992 INFO  [pool-1-thread-1] RepositoryTestWin7: Version: null
+2014-09-15 02:04:56,993 INFO  [pool-1-thread-2] RepositoryTestWin8: Version: null
+2014-09-15 02:05:26,226 INFO  [main] Launcher: 2 tests run in 29 seconds
+2014-09-15 02:05:26,226 INFO  [main] Launcher: 0 of 2 tests failed
+</code></pre>
+      </section>
+      <section>
+        <h3>Final Thoughts</h3>
+        <ul>
+          <li>administrating nodes is a pain</li>
+          <li>making sure that all Selenium/OS/browser versions play together nicely is key</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Thanks</h2><img src="images/qrcode.png" style="width:200px"><a href="https://github.com/MewesK/selenium-grid-demo">github.com/MewesK/selenium-grid-demo</a>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
